@@ -1,30 +1,27 @@
-# SlicerDocker development image
-# (based on https://github.com/dit4c/dockerfile-dit4c-container-slicer)
+# Docker container with Slicer build for development
+# (based on https://github.com/pieper/SlicerDockers)
 
-FROM stevepieper/x11
-MAINTAINER pieper@isomics.com
+ARG VERSION="5.0.3"
+
+FROM stevepieper/x11:${VERSION}
+LABEL maintainer="mcespedes99@gmail.com"
 
 RUN apt-get update
 
-# useful utilities
-RUN apt-get install -y \
-  vim-gnome exuberant-ctags \
-  git-gui
-
 # core Slicer dependencies
-RUN apt-get install -y \
-  libssl-dev libcurl4-openssl-dev \
-  subversion git-core git-svn build-essential \
-  libx11-dev libxt-dev \
-  libfontconfig-dev libxrender-dev libncurses5-dev \
-  libglu1-mesa libgl1-mesa-dev libosmesa6-dev libglu1-mesa-dev \
-  libasound2-dev \
-  qt-sdk libqtwebkit-dev
+RUN apt-get install -y git subversion libglu1-mesa libpulse-dev libnss3 libglu1-mesa \
+                       libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-render-util0 libxcb-xkb1 libxkbcommon-x11-0\
+                       libxcb-shape0 libxcb-xinerama0 libxcb-xinerama0-dev \
+                       libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0 libxcb-xkb-dev libxkbcommon-x11-dev \
+                       build-essential cmake libqt5x11extras5-dev libxt-dev libssl-dev
+  # build-essential cmake cmake-curses-gui cmake-qt-gui \
+  # qt5-default qtmultimedia5-dev qttools5-dev libqt5xmlpatterns5-dev libqt5svg5-dev qtwebengine5-dev qtscript5-dev \
+  # qtbase5-private-dev libqt5x11extras5-dev libxt-dev
 
 # for Qt5 binaries
-RUN apt-get install -y \
-  libnss3-dev \
-  libicu-dev icu-devtools
+RUN mkdir /opt/D && mkdir /opt/D/Slicer-superbuild && cd /tmp \
+    && curl -LO http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run \
+    && chmod +x qt-unified-linux-x64-online.run
 
 # includes our version of cmake
-COPY usr /usr
+# COPY usr /usr
