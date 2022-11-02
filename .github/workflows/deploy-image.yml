@@ -10,9 +10,6 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: devel-slicer
 
-env:
-  IMAGE_NAME: devel-slicer
-
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
