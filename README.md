@@ -2,9 +2,9 @@
 Container with a builded Slicer dev environment
 
 ## Instructions to use:
-1. Build the container: docker build -t mcespedes/devel-slicer:latest .
-2. Run the container: docker run -d -p 8080:8080 --name devel-slicer mcespedes/devel-slicer:latest
-3. Execute the container: docker exec -it $\gt$image ID$\lt$ (you can run 'docker ps' to obtain the image ID)
+1. Build the container: `docker build -t mcespedes/devel-slicer:latest .`
+2. Run the container: `docker run -d -p 8080:8080 --name devel-slicer mcespedes/devel-slicer:latest`
+3. Execute the container: `docker exec -it $\gt$image ID$\lt$` (you can run `docker ps` to obtain the image ID)
 4. Within the container execute:   
     4.a. `cd /tmp/`   
     4.b. `export QT_ACCOUNT_LOGIN=<your qt account>`   
